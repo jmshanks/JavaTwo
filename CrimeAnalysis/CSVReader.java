@@ -15,10 +15,10 @@ public class CSVReader {
     public static List<Crime> readCrimeFromCSV(String fileName) throws FileNotFoundException {
 
         List<Crime> crime = new ArrayList<>();
-        Path pathToFile = Paths.get("C://Users/jmsha//Documents//IdeaProjects//CrimeAnalysis//crime2006.csv");
+        Path pathToFile = Paths.get("C://crime2006.csv");
 
 
-        try (BufferedReader br = Files.newBufferedReader(Paths.get("C://Users/jmsha//Documents//IdeaProjects//CrimeAnalysis//crime2006.csv"),
+        try (BufferedReader br = Files.newBufferedReader(Paths.get("C://crime2006.csv"),
                 StandardCharsets.US_ASCII)) {
 
             String line = br.readLine();
