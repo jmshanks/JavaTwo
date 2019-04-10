@@ -1,60 +1,108 @@
 package javatwo;
 
+import java.io.IOException;
+import java.util.List;
+
+import static javatwo.CSVReader.readCrimeFromCSV;
+
 public class Crime {
 
-    private int date;
+    private String date;
     private String address;
     private int district;
-    private int beat;
-    private String grid;
+    private String beat;
+    private int grid;
     private String crimeDescription;
     private int ncicCode;
-    private int latitude;
-    private int longitude;
+    private double latitude;
+    private double longitude;
 
-    public Crime(int date, String address, int district, int beat, String grid, String crimeDescription, int ncicCode, int latitude, int longitude) {
+    public Crime(String date, String address, int district, String beat, int grid, String crimeDescription, int ncicCode, double latitude, double longitude) {
     }
 
-    public int getDate() {
+    public String getDate() {
         return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getAddress() {
         return address;
     }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public int getDistrict() {
         return district;
     }
 
-    public int getBeat() {
+    public void setDistrict(int district) {
+        this.district = district;
+    }
+
+    public String getBeat() {
         return beat;
     }
 
-    public String getGrid() {
+    public void setBeat(String beat) {
+        this.beat = beat;
+    }
+
+    public int getGrid() {
         return grid;
+    }
+
+    public void setGrid(int grid) {
+        this.grid = grid;
     }
 
     public String getCrimeDescription() {
         return crimeDescription;
     }
 
+    public void setCrimeDescription(String crimeDescription) {
+        this.crimeDescription = crimeDescription;
+    }
+
     public int getNcicCode() {
         return ncicCode;
     }
 
-    public int getLatitude() {
+    public void setNcicCode(int ncicCode) {
+        this.ncicCode = ncicCode;
+    }
+
+    public double getLatitude() {
         return latitude;
     }
 
-    public int getLongitude() {
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
         return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     @Override
     public String toString() {
         return "Date: " + date + ", Address:  " + address + ", District: " + district + ", Beat: "
-         + beat + ", Grid: " + grid + ", Description: " + crimeDescription + ", NCIC: " + ncicCode
-         + ", Latitude: " + latitude + ", Longitude: " + longitude;
+                + beat + ", Grid: " + grid + ", Description: " + crimeDescription + ", NCIC: " + ncicCode
+                + ", Latitude: " + latitude + ", Longitude: " + longitude + "\n";
     }
+
+    public static void showCrime() throws IOException {
+        List<Crime> crime = readCrimeFromCSV("C://crime2006.csv");
+        for (Crime c : crime) System.out.println(c);
+
+    }
+
 }
