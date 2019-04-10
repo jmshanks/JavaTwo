@@ -1,19 +1,17 @@
 package javatwo;
 
 
-import java.io.FileNotFoundException;
-import java.util.List;
-import static javatwo.CSVReader.readCrimeFromCSV;
+
+
 
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
 
-        List<Crime> crime = readCrimeFromCSV("crime2006.csv");
+        Crime.showCrime();
 
-        for (Crime c : crime) {
-            System.out.println(c);
-        }
     }
-
 }
+
+
+
