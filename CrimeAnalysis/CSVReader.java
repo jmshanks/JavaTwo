@@ -7,23 +7,23 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedMap;
 
 
-
-
-
-public class CSVReader {
+public class Reader {
 
 
     public static List<Crime> readCrimeFromCSV(String fileName) throws IOException {
 
         List<Crime> crime = new ArrayList<>();
-        Path pathToFile = Paths.get("C://crime2006.csv");
+
+        Path pathToFile = Paths.get("D://crime2006.csv");
 
 
-        try (BufferedReader br = Files.newBufferedReader(Paths.get("C://crime2006.csv"))) {
+        try (BufferedReader br = Files.newBufferedReader(Paths.get("D://crime2006.csv"))) {
 
             String line = br.readLine();
+
 
             for (int i = 1; (line = br.readLine()) != null; i++)
 
@@ -44,6 +44,8 @@ public class CSVReader {
         return crime;
     }
 
+
+
     private static Crime listCrime(String[] crime) {
         String date = crime[0];
         String address = crime[1];
@@ -56,6 +58,44 @@ public class CSVReader {
         double longitude = Double.parseDouble(crime[8]);
 
         return new Crime(date, address, district, beat, grid, crimeDescription, ncicCode, latitude, longitude);
+
+    }
+
+    public static List<NcicCode> readNcicFromTxt(String fileName) throws IOException {
+
+        List<NcicCode> ncicCode = new ArrayList<>();
+        Path pathToFile = Paths.get("D://ncic-codes.txt");
+
+
+        try (BufferedReader br = Files.newBufferedReader(Paths.get("D://ncic-codes.txt"))) {
+
+            String line = br.readLine();
+
+            while (line != null) {
+                String[] codeDesc = line.split("\t");
+                NcicCode ncicCodes = listCode(codeDesc);
+
+                ncicCode.add(ncicCodes);
+
+                line = br.readLine();
+            }
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return ncicCode;
+    }
+
+    private static NcicCode listCode(String[] ncicCode) {
+        int code = Integer.parseInt(ncicCode[0]);
+        String description = ncicCode[1];
+
+
+        return new NcicCode(code, description);
+
 
     }
 
